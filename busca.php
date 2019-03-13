@@ -4,11 +4,11 @@
 	mysql_select_db('pabx') or die("Erro ao Selecionar Banco");*/
 	include "conexao.php";
 	
-	//Seta os cacteres vindos do banco em UTF8
+	/*Seta os cacteres vindos do banco em UTF8
 	mysql_query("SET NAMES 'utf8'");
 	mysql_query('SET character_set_connection=utf8');
 	mysql_query('SET charecter_set_client=utf8');
-	mysql_query('SET charecter_set_results=utf8');
+	mysql_query('SET charecter_set_results=utf8');*/
 	
 	//Recupera a pesquisa feita
 	$pesquisa 	= mysql_real_escape_string($_POST['palavra']);
