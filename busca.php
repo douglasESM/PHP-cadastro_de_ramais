@@ -3,7 +3,16 @@
 	mysql_connect('10.1.1.113', 'pabx', '123') or die("Erro ao Conectar");
 	mysql_select_db('pabx') or die("Erro ao Selecionar Banco");*/
 	include "conexao.php";
-	
+	try{
+		$stmt = $conn->prepare("SELECT nome, consultorio, setor, obs, ramal, telefone, cel01, cel02 
+		FROM cadastrowhere $campo LIKE '%$pesquisa%'");
+		stmt->execute();
+
+		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+		foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll()))) as $k=>$v){
+			echo$v
+		}
+	}
 	/*Seta os cacteres vindos do banco em UTF8
 	mysql_query("SET NAMES 'utf8'");
 	mysql_query('SET character_set_connection=utf8');
@@ -22,6 +31,7 @@
 
 	//Excuta a SQL
 	$query		= mysql_query($sql) or die("Erro ao Pesquisar");
+	
 	
 	//Se não for encontrado nada, então diz: 'Nada Encontrado...', se não retorna o resultado
 	if(mysql_num_rows($query) <= 0){
